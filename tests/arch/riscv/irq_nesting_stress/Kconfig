@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+
+mainmenu "RISC-V nested interrupt stress test"
+
+source "Kconfig.zephyr"
+
+config TEST_DURATION_MS
+	int "Stress duration in milliseconds"
+	default 10000
+
+config TEST_NUM_SOURCES
+	int "Number of interrupt sources to run"
+	range 0 3
+	default 3
+
+config TEST_SAME_PRIORITY
+	bool "Run all sources at the same interrupt level (no nesting)"
+
+config TEST_WAKE_THREADS
+	bool "Wake a worker thread from every ISR"
+	default y
+
+config TEST_PERIOD0_US
+	int "Period of the level 1 source in microseconds"
+	default 97
+
+config TEST_PERIOD1_US
+	int "Period of the level 2 source in microseconds"
+	default 131
+
+config TEST_PERIOD2_US
+	int "Period of the level 3 source in microseconds"
+	default 173
+
+config TEST_ISR_MAX_SPIN
+	int "Upper bound of the random busy loop inside each ISR"
+	default 64
+	help
+	  Each ISR spins for a pseudo-random number of iterations in
+	  [0, TEST_ISR_MAX_SPIN) so ISR bodies overlap with the entry and
+	  exit paths of other interrupts at varying offsets.

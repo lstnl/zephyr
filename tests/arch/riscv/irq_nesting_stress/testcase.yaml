@@ -1,0 +1,14 @@
+common:
+  tags:
+    - interrupt
+    - riscv
+  arch_allow: riscv
+  filter: CONFIG_RISCV_CORE_NORDIC_VPR and dt_alias_exists("stress-timer0")
+    and dt_alias_exists("stress-timer1") and dt_alias_exists("stress-timer2")
+  timeout: 60
+tests:
+  arch.riscv.irq_nesting_stress:
+    platform_allow:
+      - nrf54l15dk/nrf54l15/cpuflpr
+    integration_platforms:
+      - nrf54l15dk/nrf54l15/cpuflpr

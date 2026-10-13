@@ -1,0 +1,18 @@
+/*
+ * Copyright (c) 2026 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/*
+ * The timers are driven through the nrfx HAL by the test itself, so the
+ * nodes are only referenced for their address and IRQ number and are left
+ * disabled to keep any Zephyr driver from claiming them.
+ */
+/ {
+	aliases {
+		stress-timer0 = &timer20;
+		stress-timer1 = &timer21;
+		stress-timer2 = &timer22;
+	};
+};
